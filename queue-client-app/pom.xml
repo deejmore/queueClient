@@ -62,49 +62,6 @@
 			<version>${mule.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- Mule Transports -->
-		<dependency>
-			<groupId>org.mule.transports</groupId>
-			<artifactId>mule-transport-http</artifactId>
-			<version>${mule.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mule.transports</groupId>
-			<artifactId>mule-transport-jms</artifactId>
-			<version>${mule.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mule.transports</groupId>
-			<artifactId>mule-transport-file-Dmodules=db</artifactId>
-			<version>${mule.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mule.transports</groupId>
-			<artifactId>mule-transport-xml</artifactId>
-			<version>${mule.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mule.transports</groupId>
-			<artifactId>mule-transport-jersey</artifactId>
-			<version>${mule.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mule.transports</groupId>
-			<artifactId>mule-transport-json</artifactId>
-			<version>${mule.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mule.transports</groupId>
-			<artifactId>mule-transport-ws</artifactId>
-			<version>${mule.version}</version>
-			<scope>provided</scope>
-		</dependency>
 <!-- Mule Modules -->
 		<dependency>
 			<groupId>org.mule.modules</groupId>
@@ -136,13 +93,26 @@
 			<version>${mule.version}</version>
 			<scope>provided</scope>
 		</dependency>
+	<!--  other libraries -->
+		<dependency>
+			<groupId>net.sf.jt400</groupId>
+			<artifactId>jt400-full</artifactId>
+			<version>6.0</version>
+		</dependency>
 	<!-- for testing -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+		</dependency>
+		<!-- 
 		<dependency>
 			<groupId>org.mule.tests</groupId>
 			<artifactId>mule-tests-functional</artifactId>
 			<version>${mule.version}</version>
 			<scope>test</scope>
 		</dependency>
+		 -->
 	</dependencies>
 
 	<repositories>
