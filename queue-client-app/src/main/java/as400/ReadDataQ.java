@@ -1,6 +1,7 @@
 package as400;
 
 import java.io.IOException;
+import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,11 +14,19 @@ import com.ibm.as400.access.ErrorCompletingRequestException;
 import com.ibm.as400.access.IllegalObjectTypeException;
 import com.ibm.as400.access.ObjectDoesNotExistException;
 
+
 import exception.MessageException;
 
 public class ReadDataQ extends AS400Settings {
 	
-	private static final Logger logger = LogManager.getLogger(ReadDataQ.class);
+	private String targetSystem = "";
+	private String targetUserId = "";
+	private String targetUserPassword = "";	
+	private String targetQueue = "";
+	private AS400 system = null;
+	
+	public ReadDataQ(){		
+	}
 	
 	//please look at https://stackoverflow.com/questions/16317554/jtopen-keyeddataqueue-read-timeout for more info
 
@@ -35,28 +44,49 @@ public class ReadDataQ extends AS400Settings {
 		this.waitSeconds = waitSeconds;
 	}
 	
-	public String readQueue(String dataQname) throws Exception {
+	
+	public void loadPropertyFile(String propertyFile)
+	{
+		Properties properties = new Properties();
+		try 
+		{	
+			System.out.println(propertyFile);			
+			properties.load(WriteDataQ.class.getClassLoader().getResourceAsStream(propertyFile));
+			if (properties != null)
+			{
+				targetSystem = properties.getProperty("local.system").trim();
+				targetUserId =  properties.getProperty("local.user.id").trim();
+				targetUserPassword =  properties.getProperty("local.user.password").trim();				
+				targetQueue = properties.getProperty("destination.queue").trim();
+				system =  new AS400(targetSystem,targetUserId,targetUserPassword);
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 		
+	}
+	
+	public String readQueue() throws Exception {
 		
-		String result = null;
-		AS400 system = null;
+		String result = "";
 		
-		logger.info("Reading DataQ " + dataQname + " with waitSeconds " + waitSeconds);
+		System.out.println("Reading DataQ " + targetQueue + " with waitSeconds " + waitSeconds);
 		
 		try
-		{
-			system = getAS400Connection();
+		{			
 			
 			//Read the DataQueue entry
-			DataQueueEntry dataQEntry = new DataQueue(system, dataQname).read(waitSeconds);
+			DataQueueEntry dataQEntry = new DataQueue(system, targetQueue).read(waitSeconds);
 			system.connectService(AS400.DATAQUEUE);
 			
-			logger.info("dataQEntry !=null ? " + dataQEntry != null);
+			System.out.println("dataQEntry !=null ? " + dataQEntry != null);
 			
 			//Load the result
 			if (dataQEntry != null)
 			{
 				result = dataQEntry.getString().trim();
-				logger.info("dataQEntry result " + result);
+				System.out.println("dataQEntry result " + result);
 			}
 		}
 		catch (AS400SecurityException ase)
@@ -96,9 +126,11 @@ public class ReadDataQ extends AS400Settings {
 			}			
 		}
 		
-		return result;
-		
-		
+		return result;			
 	}
+	
+	
+
+
 	
 }

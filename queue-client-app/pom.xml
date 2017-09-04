@@ -14,8 +14,8 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<mule.version>3.8.5</mule.version>
         <mule.tools.version>1.0</mule.tools.version>
-		<jdk.version>1.7</jdk.version>
-		<junit.version>4.9</junit.version>
+		<jdk.version>1.8</jdk.version>
+		<junit.version>4.12</junit.version>
 	</properties>
 
 	<build>
@@ -117,16 +117,37 @@
 
 	<repositories>
 		<repository>
+			<id>Central</id>
+			<name>Central</name>
+			<url>http://repo1.maven.org/maven2/</url>
+			<layout>default</layout>
+		</repository>
+		<repository>
 			<id>mulesoft-releases</id>
+			<name>MuleSoft Releases Repository</name>
+			<url>http://repository.mulesoft.org/releases/</url>
+			<layout>default</layout>
+		</repository>
+		<repository>
+			<id>mule-ee-releases</id>
+			<name>MuleEE Releases Repository</name>
+			<url>https://repository-master.mulesoft.org/nexus/content/repositories/releases-ee/</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>mulesoft-release</id>
+			<name>mulesoft release repository</name>
+			<layout>default</layout>
+			<url>http://repository.mulesoft.org/releases/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>mule-public</id>
 			<name>MuleSoft Releases</name>
 			<url>https://repository.mulesoft.org/nexus/content/repositories/public</url>
-		</repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>mule-public</id>
-            <name>MuleSoft Releases</name>
-            <url>https://repository.mulesoft.org/nexus/content/repositories/public</url>
-        </pluginRepository>
-    </pluginRepositories>
+		</pluginRepository>
+	</pluginRepositories>
 </project>
