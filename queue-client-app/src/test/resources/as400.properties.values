@@ -1,0 +1,13 @@
+#this is the property file to test as400 Queues
+
+#George
+local.system=
+local.user.id=
+local.user.password=
+local.user.schema=
+#command.to.run=ADDLIBLE LIB(MNICHOLSON)
+command.to.run=
+#destination.queue=/QSYS.LIB/MNICHOLSON.LIB/MARCODQ.DTAQ
+destination.queue=
+#message.to.queue=hello frm dataq land on 
+message.to.queue=000000694

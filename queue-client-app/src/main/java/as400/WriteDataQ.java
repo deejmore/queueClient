@@ -2,8 +2,6 @@ package as400;
 
 import java.beans.PropertyVetoException;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Properties;
 
 import com.ibm.as400.access.AS400;
